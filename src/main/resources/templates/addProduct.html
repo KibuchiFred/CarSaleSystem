@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>FredSystems.</title>
+
+</head>
+    <form action="#" th:action="@{/addProduct}" th:object="${product}"  method="post" enctype="multipart/form-data">
+<body>
+<div>
+    <input type="file" name="file" />
+</div>
+<div class="form-group">
+    </label>Car Model: </label>
+    <input class="form-control" th:field="*{carModel}" />
+    <br>
+    <label th:for="carModel" th:if="${#fields.hasErrors('carModel')}" th:errors="*{carModel}" required="required"
+           class="btn btn-danger">
+    </label>
+
+</div>
+<br>
+<div class="form-group">
+    <label th:for="price">Price: </label>
+    <input class="form-control" th:field="*{price}" />
+    <br>
+    <label th:for="price" th:if="${#fields.hasErrors('price')}" th:errors="*{price}" required="required"
+           class="btn btn-danger">
+    </label>
+
+    <br>
+    <div class="form-group">
+        <label th:for="milleage">Milleage: </label>
+        <input class="form-control" th:field="*{milleage}" />
+        <br>
+        <label th:for="milleage" th:if="${#fields.hasErrors('milleage')}" th:errors="*{milleage}" required="required"
+               class="btn btn-danger">
+        </label>
+
+    </div>
+
+</div>
+<br>
+<div class="form-group">
+    <label th:for="location">Location: </label>
+    <input class="form-control" th:field="*{location}" />
+    <br>
+    <label th:for="location" th:if="${#fields.hasErrors('location')}" th:errors="*{location}" required="required"
+           class="btn btn-danger">
+    </label>
+
+</div>
+<input type="submit" value="Upload" />
+</body>
+    </form>
+</html>

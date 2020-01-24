@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <title>FredSystems.</title>
+
+<!--    <link href="/static/bootstrap-4.0.0/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>-->
+</head>
+<body>
+<!--<input type="hidden" name="_method" value="PUT"/>-->
+<div class="container " >
+    <div class="row" >
+        <div th:each="pending : ${pendingApproval}">
+            <div class="col-md-3">
+            <img  style="height: 240px" width="240 px"  th:src="@{'/images/' + ${pending.carImage}} "/>
+                <div class="label-text">
+                   <label>Car Model: </label> <span class="text-category" th:text="${pending.carModel}"></span>
+                </div>
+                <div class="price-text">
+                    <label>Car Price: </label>   <span class="text-category" th:text="${pending.price}"></span>
+                </div>
+
+                    <div th:if="${#authorization.expression('hasAuthority(''ADMIN'')') }">
+                    <label>Status: </label> <span class="text-category" th:text="${pending.status}"></span>
+                </div>
+
+                <div class="location">
+                    <label>Location: </label> <span class="text-category" th:text="${pending.location}"></span>
+                </div>
+                <div class="milleage">
+                    <label>Milleage: </label> <span class="text-category" th:text="${pending.milleage}"></span>
+                </div>
+
+                <div>
+<!--                <button id="approve" name="_method" th:method="put"-->
+<!--                        th:onclick="@{'/updateStatus/{id}'(${pending.carId})}">Approve</button>-->
+<!--                </div>-->
+<!--                   <input type="hidden" name="_method" value="PUT"/>-->
+                <form a ction="#" th:action="@{'/updateStatus/'+${pending.carId}}" th:method="POST" >
+                    <button type="submit" id="Approve" name="Approve">Approve </button>
+
+                </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
