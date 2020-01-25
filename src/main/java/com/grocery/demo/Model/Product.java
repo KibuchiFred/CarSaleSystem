@@ -90,9 +90,17 @@ public class Product {
     }
 
     private String dealerName;
-   // @OneToOne(fetch = FetchType.LAZY, cascade ={CascadeType.PERSIST, CascadeType.MERGE}  )
-//    @JoinTable(name = "user_products", joinColumns = @JoinColumn(name = "userid"))
-//    private User user;
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user;
 
     @OneToOne
     private Order order;

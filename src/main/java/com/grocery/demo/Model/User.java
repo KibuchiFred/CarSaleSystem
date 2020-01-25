@@ -57,16 +57,16 @@ public class User{
 
     private List<Role> roles;
 
-    public Product getProduct() {
+    public List<Product> getProduct() {
         return product;
     }
 
-    public void setProduct(Product product) {
+    public void setProduct(List<Product> product) {
         this.product = product;
     }
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    private Product product;
+    @OneToMany(fetch = FetchType.LAZY, orphanRemoval = true, mappedBy="user")
+    private List<Product> product;
 
     public String getFname() {
         return fname;
