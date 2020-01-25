@@ -290,6 +290,22 @@ public class IndexController {
         return "welcome";
     }
 
+    @GetMapping(value = "/allUsers")
+    //@ModelAttribute("allUsers")
+    public List<User> allUsers(Model model){
+        List<User> allUsers = userService.allUsers();
+        model.addAttribute("allUsers", allUsers);
+        return allUsers;
+    }
+
+    @PostMapping("/deleteUser/{id}")
+    public String deleteUser(@PathVariable("id") Long id){
+        userService.deleteUser(id);
+
+        return "allUsers";
+
+    }
+
     @Autowired
     private ProductService productService;
 
@@ -318,8 +334,8 @@ public class IndexController {
 
     @GetMapping(value = "/products")
     @ModelAttribute("products")
-    public @ResponseBody List<Product> getAllProducts() {
-        List<Product> product = productService.getAllProducts();
+    public @ResponseBody List<Product> approvedProducts() {
+        List<Product> product = productService.approvedProucts();
 
         return product;
     }
@@ -345,6 +361,14 @@ public class IndexController {
     @PostMapping("/updateStatus/{carId}")
     public String updateStatus(@PathVariable("carId") Long carId){
         productService.updateStatus(carId);
+
+        return "pendingApproval";
+
+    }
+
+    @PostMapping("/deleteProduct/{carId}")
+    public String deleteProduct(@PathVariable("carId") Long id){
+        productService.deleteProduct(id);
 
         return "pendingApproval";
 

@@ -77,9 +77,22 @@ public class ProductService {
         return myProducts;
     }
 
+    public List<Product> approvedProucts(){
+
+        List<Product> approvedProducts = new ArrayList<>();
+        productRepository.findByStatus("APPROVED").forEach(approvedProducts::add);
+        return approvedProducts;
+    }
+
     @Transactional
         public void updateStatus( Long carId)
     {
         productRepository.setUpdateStatus("APPROVED",carId);
+    }
+
+    @Transactional
+    public void deleteProduct(Long id)
+    {
+        productRepository.deleteProduct(id);
     }
 }

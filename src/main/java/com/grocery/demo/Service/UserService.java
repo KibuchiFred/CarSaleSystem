@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 public class UserService {
@@ -21,9 +25,23 @@ public class UserService {
 
 
     }
-
-    public User findByEmail(String email){
+    public User findByEmail(String email)
+    {
         return userRepository.findByEmailIgnoreCase(email);
+    }
+
+    public List<User> allUsers(){
+
+        List<User> userList = new ArrayList<>();
+        userRepository.findAll().forEach(userList::add);
+        return userList;
+
+    }
+
+    @Transactional
+    public void deleteUser(Long id)
+    {
+        userRepository.deleteUser(id);
     }
 
 }

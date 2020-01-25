@@ -14,10 +14,19 @@ import java.util.Set;
 
 
 @Entity
+@Table(name = "users")
 public class User{
     @Id
     @GeneratedValue (strategy = GenerationType.IDENTITY)
     private Long id;
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     @DateTimeFormat(pattern = "yy-MM-dd")
     private Date dob;
@@ -43,7 +52,7 @@ public class User{
         this.roles = roles;
     }
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     //@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "userid"), inverseJoinColumns = @JoinColumn(name = "roleid"))
 
     private List<Role> roles;
@@ -56,7 +65,7 @@ public class User{
         this.product = product;
     }
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     private Product product;
 
     public String getFname() {

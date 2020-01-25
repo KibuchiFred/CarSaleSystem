@@ -18,4 +18,8 @@ List<Product> findByDealerName(String dealerName);
 @Modifying
     @Query(value = "update Product p set p.status = :status where  p.carId= :carId")
     void setUpdateStatus (@Param("status") String status, @Param("carId") Long carId);
+
+    @Modifying
+    @Query(value = "delete FROM Product p  where  p.carId = :carId")
+    void deleteProduct (@Param("carId") Long carId);
 }
