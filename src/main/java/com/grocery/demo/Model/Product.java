@@ -41,11 +41,11 @@ public class Product {
         this.milleage = milleage;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -78,7 +78,7 @@ public class Product {
     private String carImage;
     private String carModel;
     private Long milleage;
-    private float price;
+    private double price;
     private String location;
 
     public String getDealerName() {

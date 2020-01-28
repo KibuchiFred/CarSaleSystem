@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <title>FredSystems.</title>
+
+    <!--    <link href="/static/bootstrap-4.0.0/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>-->
+</head>
+<body>
+
+<div class="container "  sec:authorize="isAuthenticated()">
+    <div class="row" >
+        <div th:each="myItems : ${cartItems}">
+            <div class="col-md-3">
+                <img  style="height: 240px" width="240 px"  th:src="@{'/images/' + ${myItems.product.carImage}} "/>
+                <div class="label-text">
+                    <label>Car Model: </label> <span class="text-category" th:text="${myItems.product.carModel}"></span>
+                </div>
+
+                <div class="milleage">
+                    <label>Milleage: </label> <span class="text-category" th:text="${myItems.product.milleage}"></span>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

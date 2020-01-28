@@ -1,13 +1,11 @@
 package com.grocery.demo.Controllers;
 
-import com.grocery.demo.Model.ConfirmationToken;
-import com.grocery.demo.Model.Product;
-import com.grocery.demo.Model.Role;
-import com.grocery.demo.Model.User;
+import com.grocery.demo.Model.*;
 import com.grocery.demo.Repository.ConfirmationTokenRepository;
 import com.grocery.demo.Repository.ProductRepository;
 import com.grocery.demo.Repository.RoleRepository;
 import com.grocery.demo.Repository.UserRepository;
+import com.grocery.demo.Service.CartService;
 import com.grocery.demo.Service.EmailSenderService;
 import com.grocery.demo.Service.ProductService;
 import com.grocery.demo.Service.UserService;
@@ -25,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
 import java.security.Principal;
@@ -299,10 +298,11 @@ public class IndexController {
     }
 
     @PostMapping("/deleteUser/{id}")
-    public String deleteUser(@PathVariable("id") Long id){
+    public String deleteUser(@PathVariable("id") Long id, final RedirectAttributes  redirectAttributes){
         userService.deleteUser(id);
 
-        return "allUsers";
+        redirectAttributes.addFlashAttribute("deleted", "User Deleted....");
+        return "redirect:/allUsers";
 
     }
 
@@ -319,8 +319,8 @@ public class IndexController {
 
     //add a product
     @PostMapping("/addProduct")
-    public String uploadProduct(@Valid Product product,
-                                @RequestParam(value = "file", required = false)MultipartFile file, @AuthenticationPrincipal Principal user){
+    public String uploadProduct(@Valid Product product, @RequestParam(value = "file", required = false)MultipartFile file,
+                                @AuthenticationPrincipal Principal user, final  RedirectAttributes redirectAttributes){
         try {
 
            productService.saveProduct(product,file,user.getName());
@@ -329,7 +329,8 @@ public class IndexController {
             System.out.println(e.getMessage());
         }
 
-        return "products";
+        redirectAttributes.addFlashAttribute("msg","Successfully posted product....");
+        return "redirect:/myProducts";
     }
 
     @GetMapping(value = "/products")
@@ -359,18 +360,42 @@ public class IndexController {
     }
 
     @PostMapping("/updateStatus/{carId}")
-    public String updateStatus(@PathVariable("carId") Long carId){
+    public String updateStatus(@PathVariable("carId") Long carId, final RedirectAttributes redirectAttributes){
         productService.updateStatus(carId);
+        redirectAttributes.addFlashAttribute("msg", "updated successfully...");
 
-        return "pendingApproval";
+        return "redirect:/pendingApproval";
 
     }
 
     @PostMapping("/deleteProduct/{carId}")
-    public String deleteProduct(@PathVariable("carId") Long id){
+    public String deleteProduct(@PathVariable("carId") Long id, final RedirectAttributes redirectAttributes){
         productService.deleteProduct(id);
 
-        return "pendingApproval";
+        redirectAttributes.addFlashAttribute("msg", "deleted successfully...");
+        return "redirect:/pendingApproval";
 
+    }
+
+    @Autowired
+    private CartService cartService;
+    @PostMapping("/addToCart/{carId}")
+    public String addToCart(@PathVariable Long carId, @ModelAttribute CartItems cartItems, Principal principal,
+                            final RedirectAttributes redirectAttributes){
+
+        //to save to cartItem table.
+        cartService.addToCart(carId, cartItems, principal.getName());
+
+        redirectAttributes.addFlashAttribute("message", "Successfully added to cart");
+        return "redirect:/myCart";
+    }
+
+    @GetMapping("myCart")
+    public  ModelAndView myCart ( @AuthenticationPrincipal Principal principal, ModelAndView modelAndView){
+
+       List<CartItems> cartItems =  cartService.myCart(principal.getName());
+       modelAndView.addObject("cartItems",cartItems);
+       modelAndView.setViewName("myCart");
+        return modelAndView;
     }
 }
