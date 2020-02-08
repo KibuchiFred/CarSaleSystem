@@ -9,8 +9,8 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.grocery</groupId>
-    <artifactId>demo</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>fredsystems</artifactId>
+    <version>0.0.1-RELEASE</version>
 
     <description>Demo project for Spring Boot</description>
 
