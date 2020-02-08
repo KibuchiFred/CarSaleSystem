@@ -44,9 +44,9 @@ public class CartService {
        int sum = 0;
         for (double items : getPrices){
             sum += items;
-            System.out.printf("The total cart Items Price is: "   +sum);
-        }
 
+        }
+        System.out.printf("The total cart Items Price is: "   +sum);
 
         return cartItems;
     }
