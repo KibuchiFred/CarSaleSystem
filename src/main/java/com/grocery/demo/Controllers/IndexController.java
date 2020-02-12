@@ -319,18 +319,24 @@ public class IndexController {
 
     //add a product
     @PostMapping("/addProduct")
-    public String uploadProduct(@Valid Product product, @RequestParam(value = "file", required = false)MultipartFile file,
+    public String uploadProduct(@Valid Product product, BindingResult bindingResult, @RequestParam(value = "file", required = false)MultipartFile file,
                                 @AuthenticationPrincipal Principal user, final  RedirectAttributes redirectAttributes){
-        try {
 
-           productService.saveProduct(product,file,user.getName());
-
-        }catch (Exception e){
-            System.out.println(e.getMessage());
+        if (bindingResult.hasErrors()){
+            return "addProduct";
         }
+        else {
+            try {
 
-        redirectAttributes.addFlashAttribute("msg","Successfully posted product....");
-        return "redirect:/myProducts";
+                productService.saveProduct(product, file, user.getName());
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+            redirectAttributes.addFlashAttribute("msg", "Successfully posted product....");
+            return "redirect:/myProducts";
+        }
     }
 
     @GetMapping(value = "/products")

@@ -1,6 +1,8 @@
 package com.grocery.demo.Model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+
 @Entity
 
 @Table(name = "Products")
@@ -74,11 +76,15 @@ public class Product {
         this.status = status;
     }
 
-
+    @NotEmpty(message = "Car Image must be provided")
     private String carImage;
+    @NotEmpty(message = "Car model can not be blank")
     private String carModel;
+   // @NotEmpty(message = "Milleage must be disclosed")
     private Long milleage;
+   // @NotEmpty(message = "Price field is mandatory")
     private double price;
+    @NotEmpty(message = "Provide the location of the car")
     private String location;
 
     public String getDealerName() {

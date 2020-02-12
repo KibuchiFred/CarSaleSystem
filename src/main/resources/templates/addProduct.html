@@ -9,10 +9,14 @@
     <form action="#" th:action="@{/addProduct}" th:object="${product}"  method="post" enctype="multipart/form-data">
 <body>
 <div>
+    <label>Car Image: </label>
     <input type="file" name="file" />
+    <label th:for="carImage" th:if="${#fields.hasErrors('carImage')}" th:errors="*{carImage}" required="required"
+           class="btn btn-danger">
+    </label>
 </div>
 <div class="form-group">
-    </label>Car Model: </label>
+    <label>Car Model: </label>
     <input class="form-control" th:field="*{carModel}" />
     <br>
     <label th:for="carModel" th:if="${#fields.hasErrors('carModel')}" th:errors="*{carModel}" required="required"
