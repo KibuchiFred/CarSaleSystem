@@ -7,21 +7,23 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico"/>
 
     <title>FredSystems.</title>
 
-    <!--    <link href="/static/bootstrap-4.0.0/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>-->
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+
 </head>
 <body>
+<button class="buttonOne; btn btn-danger">Success Button</button>
 <div class="container " >
     <div class="row" >
         <div th:each="product : ${products}">
             <div class="col-md-3">
-                <img  style="height: 240px" width="240 px"  th:src="@{'/images/' + ${product.carImage}} "/>
+                <img  style="max-width: 100%; height: auto;"  th:src="@{'/images/' + ${product.carImage}} "/>
                 <div class="label-text">
                     <label>Car Model: </label> <span class="text-category" th:text="${product.carModel}"></span>
                 </div>

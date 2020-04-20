@@ -12,6 +12,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" type="text/css" href="../resources/static/css/index.css">
+
     <title>FredSystems.</title>
 
     <!--    <link href="/static/bootstrap-4.0.0/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>-->
@@ -22,7 +24,7 @@
     <div class="row" >
         <div th:each="myItems : ${myProducts}">
             <div class="col-md-3">
-                <img  style="height: 240px" width="240 px"  th:src="@{'/images/' + ${myItems.carImage}} "/>
+                <img  style="max-width: 100%; height: auto"  th:src="@{'/images/' + ${myItems.carImage}} "/>
                 <div class="label-text">
                     <label>Car Model: </label> <span class="text-category" th:text="${myItems.carModel}"></span>
                 </div>

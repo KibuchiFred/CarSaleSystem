@@ -44,6 +44,8 @@ public class ProductService {
           product.setDealerName(username);
             product.setCarImage(file.getOriginalFilename());//save the image address to the database.
 
+            System.out.println("Car Image Name:"+file.getOriginalFilename());
+
             productRepository.save(product);
 
 
@@ -61,7 +63,7 @@ public class ProductService {
     }
 
    // find all  products
-    public List<Product> getAllProducts(){
+    public Iterable<Product> getAllProducts(){
 
         List<Product> products = new ArrayList<>();
         productRepository.findAll().forEach(products::add);
@@ -77,7 +79,7 @@ public class ProductService {
         return myProducts;
     }
 
-    public List<Product> approvedProucts(){
+    public Iterable<Product> approvedProucts(){
 
         List<Product> approvedProducts = new ArrayList<>();
         productRepository.findByStatus("APPROVED").forEach(approvedProducts::add);

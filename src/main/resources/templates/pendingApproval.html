@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/bootstrap-4.0.0/css/bootstrap.css/bootstrap.min.css">
 
     <title>FredSystems.</title>
 
@@ -22,7 +23,7 @@
     <div class="row" >
         <div th:each="pending : ${pendingApproval}">
             <div class="col-md-3">
-            <img  style="height: 240px" width="240 px"  th:src="@{'/images/' + ${pending.carImage}} "/>
+            <img  style="max-width: 100%; height: auto"  th:src="@{'/images/' + ${pending.carImage}} "/>
                 <div class="label-text">
                    <label>Car Model: </label> <span class="text-category" th:text="${pending.carModel}"></span>
                 </div>

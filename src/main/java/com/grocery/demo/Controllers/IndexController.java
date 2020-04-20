@@ -319,7 +319,7 @@ public class IndexController {
 
     //add a product
     @PostMapping("/addProduct")
-    public String uploadProduct(@Valid Product product, BindingResult bindingResult, @RequestParam(value = "file", required = false)MultipartFile file,
+    public String uploadProduct( Product product, BindingResult bindingResult, @RequestParam(value = "file")MultipartFile file,
                                 @AuthenticationPrincipal Principal user, final  RedirectAttributes redirectAttributes){
 
         if (bindingResult.hasErrors()){
@@ -341,8 +341,8 @@ public class IndexController {
 
     @GetMapping(value = "/products")
     @ModelAttribute("products")
-    public @ResponseBody List<Product> approvedProducts() {
-        List<Product> product = productService.approvedProucts();
+    public @ResponseBody Iterable<Product> approvedProducts() {
+        Iterable<Product> product = productService.approvedProucts();
 
         return product;
     }
