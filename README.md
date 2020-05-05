@@ -5,3 +5,9 @@ Getting Started:
 To get started, create a mysql database and provide the database user name and password to application.properties file of the pulled project code.
 Create a table Roles and populate with three types of roles: ADMIN, DEALER. CLIENT
 
+Build With:
+Spring boot- Framework
+Maven - Build tool and dependency management
+
+Authors:
+Fred Kibuchi
