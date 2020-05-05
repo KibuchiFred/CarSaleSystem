@@ -8,6 +8,7 @@ Create a table Roles and populate with three types of roles: ADMIN, DEALER. CLIE
 Build With:
 Spring boot- Framework
 Maven - Build tool and dependency management
+Thymeleaf - Server-Side templating engine
 
 Authors:
 Fred Kibuchi
