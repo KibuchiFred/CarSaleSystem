@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @ControllerAdvice
-@EnableWebMvc
+//@EnableWebMvc
 public class CentralExceptionHandler {
 
     @ExceptionHandler({UsernameNotFoundException.class})

@@ -35,8 +35,13 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-@EnableWebMvc
+//@EnableWebMvc
 public class IndexController {
+
+    @GetMapping("/all")
+    public String all(){
+        return "all";
+    }
 
   @Autowired
    private UserService userService;
@@ -217,7 +222,7 @@ public class IndexController {
             mailMessage.setSubject("Complete Password Reset!");
             mailMessage.setFrom("fredkibuchi64@gmail.com");
             mailMessage.setText("To complete the password reset process, please click here: "
-                    + "http://localhost:8082/confirm-reset?token="+confirmationToken.getConfirmationToken());
+                    + "http://localhost:8080/confirm-reset?token="+confirmationToken.getConfirmationToken());
 
             // Send the email
             emailSenderService.sendEmail(mailMessage);

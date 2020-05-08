@@ -2,88 +2,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico"/>
+
     <title>FredSystems.</title>
+    <link href="../static/css/bootstrap.css" rel="stylesheet" th:href="@{/css/bootstrap.css}"/>
+    <link href="../static/fonts/bootstrap.css" rel="stylesheet" th:href="@{/fonts/bootstrap.css}"/>
 
 </head>
 <body>
-<form name="login" method="POST" th:action="@{/login}" class="form-signin"/>
-<div class="form-group ">
-    <span></span>
-    <input name="username" type="text" class="form-control" placeholder="Username"
+<form name="login" method="POST" th:action="@{/login}" class="col-lg-6 offset-lg-3"/>
+
+<div class="container">
+    <p>Navigation Bar Will Come in here...</p>
+
+<div class="row justify-content-center">
+   <div class="form-group col-md-4 col-md-offset-5 align-center ">
+    <input class="col-auto" name="username" type="text"  placeholder="Username"
            autofocus="true" required="required"/>
-    <br>
-    <br>
 
-    <input name="password" type="password" class="form-control" placeholder="Password" required="required"/>
-    <span></span>
+  <input class="col-auto" name="password" type="password"  placeholder="Password" required="required"/>
 
-    <br>
-    <div>
+       <br>
     <input type="checkbox" class="form-check-input" name="my-remember-me" id="remember-me" />
     <label>Remember me!</label>
+       <br>
+
+           <input type="submit" class="btn btn-primary" value="Login" />
+       <br>
+
+        <a href="/forgot-password">Forgot Your Password?</a>
     </div>
 
-        <br>
-        <input type="submit" value="Login" />
-        <br>
-    <br>
-        <a href="/forgot-password">Forgot Your Password?</a>
+    </div>
     </div>
     </body>
     </html>
-
-    <!--<!DOCTYPE html>-->
-<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
-<!--<head>-->
-<!--    <title>Mi primer Login</title>-->
-
-<!--    &lt;!&ndash;JQUERY&ndash;&gt;-->
-<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>-->
-
-<!--    &lt;!&ndash; FRAMEWORK BOOTSTRAP para el estilo de la pagina&ndash;&gt;-->
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">-->
-<!--    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>-->
-
-<!--    &lt;!&ndash; Los iconos tipo Solid de Fontawesome&ndash;&gt;-->
-<!--    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">-->
-<!--    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>-->
-
-<!--    &lt;!&ndash; Nuestro css&ndash;&gt;-->
-<!--    <link rel="stylesheet" type="text/css" href="static/css/index.css" th:href="@{/css/index.css}">-->
-
-<!--</head>-->
-<!--<body>-->
-<!--<div class="modal-dialog text-center">-->
-<!--    <div class="col-sm-8 main-section">-->
-<!--        <div class="modal-content">-->
-<!--            <div class="col-12 user-img">-->
-<!--                <img src="static/img/user.png" th:src="@{/img/user.png}"/>-->
-<!--            </div>-->
-<!--            <form class="col-12" th:action="@{/login}" method="post">-->
-<!--                <div class="form-group" id="user-group">-->
-<!--                    <input type="text" class="form-control" placeholder="Nombre de usuario" name="username"/>-->
-<!--                </div>-->
-<!--                <div class="form-group" id="contrasena-group">-->
-<!--                    <input type="password" class="form-control" placeholder="Contrasena" name="password"/>-->
-<!--                </div>-->
-<!--                <div class="form-check" id="rememberme-group">-->
-<!--                    <input type="checkbox" class="form-check-input" name="my-remember-me" id="remember-me" />-->
-<!--                    <label class="form-check-label" for="remember-me" style="color:white;">Recordar mi sesion</label>-->
-<!--                </div>-->
-<!--                <button type="submit" class="btn btn-primary"><i class="fas fa-sign-in-alt"></i>  Ingresar </button>-->
-<!--            </form>-->
-<!--            <div class="col-12 forgot">-->
-<!--                <a href="#">Recordar contrasena?</a>-->
-<!--            </div>-->
-<!--            <div th:if="" class="alert alert-danger" role="alert">-->
-<!--                Invalid username and password.-->
-<!--            </div>-->
-<!--            <div th:if="    " class="alert alert-success" role="alert">-->
-<!--                You have been logged out.-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
